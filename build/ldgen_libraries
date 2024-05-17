@@ -1,4 +1,4 @@
-C:/Users/DELL/workspace/Proyec/build/esp-idf/riscv/libriscv.a
+C:/Users/DELL/workspace/Proyec/build/esp-idf/xtensa/libxtensa.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/esp_ringbuf/libesp_ringbuf.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/efuse/libefuse.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/driver/libdriver.a
@@ -54,9 +54,9 @@ C:/Users/DELL/workspace/Proyec/build/esp-idf/espcoredump/libespcoredump.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/wear_levelling/libwear_levelling.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/sdmmc/libsdmmc.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/fatfs/libfatfs.a
-C:/Users/DELL/workspace/Proyec/build/esp-idf/ieee802154/libieee802154.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/json/libjson.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/mqtt/libmqtt.a
+C:/Users/DELL/workspace/Proyec/build/esp-idf/perfmon/libperfmon.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/spiffs/libspiffs.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 C:/Users/DELL/workspace/Proyec/build/esp-idf/main/libmain.a

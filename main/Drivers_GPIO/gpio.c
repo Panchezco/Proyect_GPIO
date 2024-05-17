@@ -73,42 +73,73 @@ volatile uint32_t GPIO_PINX_REG[] = {
  * Output: GND
  *
  *****************************************************************************/
-void  GPIO_Out_pin(uint_fast16_t selectedPins)
+void GPIO_Out_pin(uint_fast16_t selectedPins)
 {
     uint_fast16_t inputPinValue_withoffsett;
 
-    if(GPIO_PINX_REG[selectedPins]){
-    printf("Error el pin %d no disponible.",selectedPins);
-    exit(1);
-    }
+//    if(GPIO_PINX_REG[selectedPins]){
+//    printf("Error el pin %d no disponible.",selectedPins);
+//    exit(1);
+//    }
 
     inputPinValue_withoffsett = DIR_GPIO2_BASE + selectedPins;
 
+    /*DESACTIVAMOS EL PIN COMO ENTRADA*/
+     HWREG32(GPIO_PINX_REG[selectedPins]) &= ~(1<<9);
+
     //                                            | SEL0 || SEL1|| SEL2 |
     // FUNCION 2 GPIO                                 0      1       0
-    HWREG32(GPIO_PINX_REG[inputPinValue_withoffsett]) &= ~(SEL0); //2'12
-    HWREG32(GPIO_PINX_REG[inputPinValue_withoffsett]) |= (SEL1); //2'13
-    HWREG32(GPIO_PINX_REG[inputPinValue_withoffsett]) &= ~(SEL2);// 2'14
-
-    /*DESACTIVAMOS EL PIN COMO ENTRADA*/
-    HWREG32(GPIO_PINX_REG[inputPinValue_withoffsett]) &= ~(FUN_IE);
+    HWREG32(GPIO_PINX_REG[selectedPins]) &= ~(1<<12); //2'12
+    HWREG32(GPIO_PINX_REG[selectedPins]) |= (1<<13); //2'13
+    HWREG32(GPIO_PINX_REG[selectedPins]) &= ~(1<<14);// 2'14
 
     switch (selectedPins) {
-        case IO_32_REG:
-        case IO_33_REG:
-        	GPIO_ENABLE1_REG |= (1 << (inputPinValue_withoffsett - 32));
+        case 32:
+        case 33:
+        	GPIO_ENABLE1_REG |= (1 << (selectedPins - 32));
             break;
         default:
-        	 GPIO_ENABLE_REG  |= inputPinValue_withoffsett;
+        	 GPIO_ENABLE_REG  |= 1 << selectedPins;
             break;
     }
 }
 
 /******************************************************************************
- * Function: GPIO_SET_0
- * Preconditions:
- * Overview: Establece como salida el pin seleccionado.
+ * Function: GPIO_OUTSET_1
+ * Preconditions:   GPIO_Out_pin
+ * Overview: Establece la salida del pin seleccionado en 1 o 0.
  * Input: Pin(x).
  * Output: GND
  *
  *****************************************************************************/
+void GPIO_OUTSET(uint_fast16_t selectedPins, uint_fast8_t state){
+
+
+	if(state==HIGH)
+	{
+		switch (selectedPins) {
+		        case 32:
+		        case 33:
+		        	GPIO_OUT1_W1TS_REG  |= (1 << (selectedPins- 32));
+		            break;
+		        default:
+		        	GPIO_OUT_W1TS_REG = 1<<selectedPins;
+		            break;
+		    }
+	}else
+
+	if(state==LOW)
+	{
+		switch (selectedPins) {
+				        case 32:
+				        case 33:
+				        	GPIO_OUT1_W1TC_REG  |= (1 << (selectedPins- 32));
+				            break;
+				        default:
+				        	GPIO_OUT_W1TC_REG = 1<<selectedPins;
+				            break;
+				    }
+	}
+}
+
+

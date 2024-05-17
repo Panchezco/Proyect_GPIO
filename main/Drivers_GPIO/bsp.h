@@ -27,11 +27,9 @@
 
 /* DEFINICIONES estados*/
 
-#define GPI_HIGH  VCC
-#define GPI_LOW   GND
+#define HIGH  VCC
+#define LOW   GND
 
-
-#define
 /* Definición de botones . */
 //Definiciones de Puertos
 
@@ -44,13 +42,13 @@
 #define Led_1     0x20000  // IO 17
 #define Led_2     0x10000  // IO 16
 #define Led_3     0x10     // IO 4
-#define Led_4     0x04     // IO 2
-#define Led_B     0x20     // IO 5
+#define Led_4     2    // IO 2
+#define Led_B     5    // IO 5
 
 /* DEFINICIONES RGB*/
 
-#define RGB_ROJO     (0x4000)  // IO 14
-#define RGB_VERDE    (0x1000)  // IO 12
-#define RGB_AZUL     (0x2000)  // IO 13
+#define RGB_ROJO     14 // IO 14
+#define RGB_VERDE    12 // IO 12
+#define RGB_AZUL    13  // IO 13
 
 
