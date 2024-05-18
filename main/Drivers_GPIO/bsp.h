@@ -34,7 +34,7 @@
 #define RGB_LOW   VCC
 
 #define PULL_UP   8
-#define PULL_DOWM 7
+#define PULL_DOWN 7
 /* Definición de botones . */
 //Definiciones de Puertos
 

@@ -10,7 +10,7 @@
 
 void app_main(void)
 {
-
+	GPIO_INPUT_PULL(17, PULL_UP);
 
 	GPIO_Out_pin(RGB_ROJO );
 	GPIO_Out_pin(RGB_AZUL );

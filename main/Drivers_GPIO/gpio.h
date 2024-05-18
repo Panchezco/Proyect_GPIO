@@ -31,6 +31,7 @@
 #define GPIO_HIGH      (0x01)
 #define GPIO_LOW       (0x00)
 #define FUN_IE         (0x200)
+#define noexist        LOW
 
 #define SEL0           (0x1000)
 #define SEL1           (0x2000)
@@ -166,26 +167,60 @@ volatile uint32_t GPIO_PINX_REG[] = {
 #define RTC_17 IO_27_REG
 
 ///////////////// MATRIZ DE RTC //////////////////////////
- volatile uint32_t GPIO_PINX_REG[] = {
-		 RTC_0,
-		 RTC_1,
-		 RTC_2,
-		 RTC_3,
-		 RTC_4,
-		 RTC_5,
-		 RTC_6,
-		 RTC_7,
-		 RTC_8,
-		 RTC_9,
-		 RTC_10,
-		 RTC_11,
-		 RTC_12,
-		 RTC_13,
-		 RTC_14,
-		 RTC_15,
-		 RTC_16,
-		 RTC_17,
+ volatile uint32_t GPIO_RTC_X[] = {
+      RTC_11,   // IO_0_REG
+      0x00,     // IO_1_REG
+      RTC_12,   // IO_2_REG
+      0x00,     // IO_3_REG
+      RTC_10,   // IO_4_REG
+      0x00,     // IO_5_REG
+      0x00,     // IO_6_REG
+      0x00,     // IO_7_REG
+      0x00,     // IO_8_REG
+      0x00,     // IO_9_REG
+      0x00,     // IO_10_REG
+      0x00,     // IO_11_REG
+      RTC_15,   // IO_12_REG
+      RTC_14,   // IO_13_REG
+      RTC_16,   // IO_14_REG
+      RTC_13,   // IO_15_REG
+      0x00,     // IO_16_REG
+      0x00,     // IO_17_REG
+      0x00,     // IO_18_REG
+      0x00,     // IO_19_REG
+      0x00,     // IO_20_REG
+      0x00,     // IO_21_REG
+      0x00,     // IO_22_REG
+      0x00,     // IO_23_REG
+      0x00,     // 0x00
+      RTC_6,    // IO_25_REG
+      RTC_7,    // IO_26_REG
+      RTC_17,   // IO_27_REG
+      0x00,     // 0x00
+      0x00,     // 0x00
+      0x00,     // 0x00
+      0x00,     // 0x00
+      RTC_9,    // IO_32_REG
+      RTC_8,    // IO_33_REG
+      RTC_4,    // I_34_REG
+      RTC_5,    // I_35_REG
+      RTC_0,    // I_36_REG
+      RTC_1,    // I_37_REG
+      RTC_2,    // I_38_REG
+      RTC_3     // I_39_REG
  };
+
+#define RTC_IO_TOUCH_PAD0_REG 0x3FF48494
+#define RTC_IO_TOUCH_PAD1_REG 0x3FF48498
+#define RTC_IO_TOUCH_PAD2_REG 0x3FF4849C
+#define RTC_IO_TOUCH_PAD3_REG 0x3FF484A0
+#define RTC_IO_TOUCH_PAD4_REG 0x3FF484A4
+#define RTC_IO_TOUCH_PAD5_REG 0x3FF484A8
+#define RTC_IO_TOUCH_PAD6_REG 0x3FF484AC
+#define RTC_IO_TOUCH_PAD7_REG 0x3FF484B0
+#define RTC_IO_TOUCH_PAD8_REG 0x3FF484B4
+#define RTC_IO_TOUCH_PAD9_REG 0x3FF484B8
+
 /////////////////////////////////////////////////////////
 
 /************************************************
@@ -195,7 +230,7 @@ volatile uint32_t GPIO_PINX_REG[] = {
 extern void inicializar_GPIO();
 extern void GPIO_Out_pin(uint_fast16_t selectedPins);
 extern void GPIO_OUTSET(uint_fast16_t selectedPins, uint_fast8_t state);
-extern void GPIO_INPUT_PULLUP(uint_fast16_t selectedPins);
+extern void GPIO_INPUT_PULL(uint_fast16_t selectedPins,uint_fast8_t PULL);
 
 
 

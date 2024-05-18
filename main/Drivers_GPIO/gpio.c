@@ -80,12 +80,11 @@ void GPIO_OUTSET(uint_fast16_t selectedPins, uint_fast8_t state){
 		        	GPIO_OUT1_W1TS_REG  |= (1 << (selectedPins- 32));
 		            break;
 		        default:
-		        	GPIO_OUT_W1TS_REG = 1<<selectedPins;
+		        	GPIO_OUT_W1TS_REG |= 1<<selectedPins;
 		            break;
 		    }
-	}else
-
-	if(state==LOW)
+	}
+    else if(state==LOW)
 	{
 		switch (selectedPins) {
 				        case 32:
@@ -93,35 +92,35 @@ void GPIO_OUTSET(uint_fast16_t selectedPins, uint_fast8_t state){
 				        	GPIO_OUT1_W1TC_REG  |= (1 << (selectedPins- 32));// se restan 32 poeque estamos usando un registro diferente y empieza donde termina  GPIO_ENABLE_REG
 				            break;
 				        default:
-				        	GPIO_OUT_W1TC_REG = 1<<selectedPins;
+				        	GPIO_OUT_W1TC_REG |= 1<<selectedPins;
 				            break;
 				    }
 	}
 }
 
 /******************************************************************************
- * Function: GPIO_INPUT_PULLUP
+ * Function: GPIO_INPUT_PULL
  * Preconditions:
  * Overview: sets the pin as input
- * Input: Pin(x).
+ * Input: Pin(x) and set pull-up or pull-down.
  * Output: GND
  *
  *****************************************************************************/
-void GPIO_INPUT_PULLUP(uint_fast16_t selectedPins)
+void GPIO_INPUT_PULL(uint_fast16_t selectedPins, uint_fast8_t PULL)
 {
 
 	uint_fast16_t inputPinValue_withoffsett;
 
 	inputPinValue_withoffsett = DIR_GPIO2_BASE + GPIO_PINX_REG[selectedPins]; //Obtenemos el alias de el reg
 
-	if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0 || selectedPins > MAX_OUTPUT_PIN){   // Las IO arriba de 34 son solo para entadas
+	if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0 || selectedPins > MAX_OUTPUT_PIN){   // Desactivamos gpio
 	    printf("Error el pin %d no disponible.",selectedPins);
 	    exit(1);
 	    }
 
-    switch (selectedPins) {
-        case 32:
-        case 33:
+    switch (selectedPins) {                                 // Desactivamos gpio
+        case 32:    case 33:    case 34:    case 35:    case 36:     case 37:   case 38:    case 39:
+
         	GPIO_ENABLE1_REG &= ~ (1 << (selectedPins - 32));// se restan 32 poeque estamos usando un registro diferente y empieza donde termina  GPIO_ENABLE_REG
             break;
         default:
@@ -129,16 +128,51 @@ void GPIO_INPUT_PULLUP(uint_fast16_t selectedPins)
             break;
     }
 
-    HWREG32(inputPinValue_withoffsett) |= (1<<9);     /*Desactivamos fun_IE*/
+     HWREG32(inputPinValue_withoffsett) |= (1<<9);     /*Activamos fun_IE*/
     //                                            | SEL0 || SEL1|| SEL2 |
       // FUNCION 2 GPIO                                 0      1       0
       HWREG32( inputPinValue_withoffsett) &= ~(1<<12); //2'12
       HWREG32( inputPinValue_withoffsett) |= (1<<13); //2'13
       HWREG32( inputPinValue_withoffsett) &= ~(1<<14);// 2'14
 
+      //HWREG32(inputPinValue_withoffsett) |=(1<<PULL_UP);
+      // HWREG32(inputPinValue_withoffsett) |=(1<<PULL_DOWN);
+      if(PULL == PULL_UP)
+      {
+
+//    	  if(GPIO_RTC_X[selectedPins] == noexist)
+//    	  {
+
+    		  HWREG32(inputPinValue_withoffsett) &= ~(1<<PULL_DOWN);
+    		  HWREG32(inputPinValue_withoffsett) |=  (1<<PULL_UP);
+//
+//    	  }
+//    	  else
+//		  {
+//
+//
+//
+//		  }
 
 
-      HWREG32(inputPinValue_withoffsett) |=(1<<PULL_UP);
+      }
+      else if(PULL== PULL_DOWN)
+      {
 
+//    	  if(GPIO_RTC_X[selectedPins] == noexist)
+//    	  {
+//
+    		  HWREG32(inputPinValue_withoffsett) &= ~(1<<PULL_UP);
+    		  HWREG32(inputPinValue_withoffsett) |=  (1<<PULL_DOWN);
+
+//    	  }
+//    	  else
+//    	  {
+//
+//
+//
+//    	  }
+
+      }
 }
 
