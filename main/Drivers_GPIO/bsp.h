@@ -30,18 +30,23 @@
 #define HIGH  VCC
 #define LOW   GND
 
+#define RGB_HIGH  GND // Logica inversa, consulte el esquematico de la tarjeta
+#define RGB_LOW   VCC
+
+#define PULL_UP   8
+#define PULL_DOWM 7
 /* Definición de botones . */
 //Definiciones de Puertos
 
 
-#define BOTON1    0x40000 // IO 18
-#define BOTON2    0x80000 // IO 19
+#define BOTON1    18//   0x40000 IO 18
+#define BOTON2    19//   0x80000 IO 19
 
 /* DEFINICIONES DE LEDS INDEPENDIENTES*/
 
-#define Led_1     0x20000  // IO 17
-#define Led_2     0x10000  // IO 16
-#define Led_3     0x10     // IO 4
+#define Led_1     17 // IO 17
+#define Led_2     16  // IO 16
+#define Led_3     4     // IO 4
 #define Led_4     2    // IO 2
 #define Led_B     5    // IO 5
 
@@ -49,6 +54,12 @@
 
 #define RGB_ROJO     14 // IO 14
 #define RGB_VERDE    12 // IO 12
-#define RGB_AZUL    13  // IO 13
+#define RGB_AZUL     13  // IO 13
+
+
+/* DEFINICIONES standart*/
+#define MAX_VALID_PIN  39
+#define MAX_OUTPUT_PIN 34 // Los pines por encima de 34 son solo de entrada
+
 
 
