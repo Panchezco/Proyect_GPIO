@@ -4,21 +4,25 @@
 #include <stdint.h>
 #include "Drivers_GPIO\gpio.c"
 
-#define GPIO_OUT  (HWREG32(0x3FF44004))
-#define GPIO_ENABLE (HWREG32(0x3FF44020))
-#define GPIO_OUT_WITS (HWREG32(0x3FF44014))
-
 void app_main(void)
 {
-	GPIO_INPUT_PULL(17, PULL_UP);
+	ini_board_GPIO();
 
-	GPIO_Out_pin(RGB_ROJO );
-	GPIO_Out_pin(RGB_AZUL );
-	GPIO_Out_pin(RGB_VERDE );
-			 GPIO_OUTSET(RGB_ROJO ,LOW);
-			 GPIO_OUTSET(RGB_VERDE ,LOW);
-			 GPIO_OUTSET(RGB_AZUL ,LOW);
+	while(1)
+	{
+         if((GPIO_READ(BTN1)==1) && (GPIO_READ(BTN2)==1) )
+         {
 
+        	 GPIO_WRITTE(RGB_RED,RGB_HIGH);
+        	 GPIO_WRITTE(RGB_BLUE,RGB_HIGH);
+        	 GPIO_WRITTE(RGB_GREEN,RGB_HIGH);
 
+         }
+
+    	 GPIO_WRITTE(RGB_RED,RGB_LOW);
+    	 GPIO_WRITTE(RGB_BLUE,RGB_LOW);
+    	 GPIO_WRITTE(RGB_GREEN,RGB_LOW);
+
+	}
 
 }

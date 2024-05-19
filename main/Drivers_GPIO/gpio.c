@@ -24,25 +24,25 @@
 #include "gpio.h"
 
 /******************************************************************************
- * Function: GPIO_Out_pin
+ * Function: GPIO_Out
  * Preconditions:
  * Overview: sets the pin as out
  * Input: Pin(x).
  * Output: GND
  *
  *****************************************************************************/
-void GPIO_Out_pin(uint_fast16_t selectedPins)
+void GPIO_OUT(uint_fast16_t selectedPins)
 {
     uint_fast16_t inputPinValue_withoffsett;
 
-    if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0 || selectedPins > MAX_OUTPUT_PIN){   // Las IO arriba de 34 son solo para entadas
+    if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0 || selectedPins > MAX_OUTPUT_PIN){
     printf("Error el pin %d no disponible.",selectedPins);
     exit(1);
     }
 
     inputPinValue_withoffsett = DIR_GPIO2_BASE + GPIO_PINX_REG[selectedPins]; //Obtenemos el alias de el reg
 
-     HWREG32( inputPinValue_withoffsett) &= ~(1<<9);     /*Desactivamos fun_IE*/
+     HWREG32( inputPinValue_withoffsett) &= ~(1<<9);     /*Disable fun_IE*/
 
     //                                            | SEL0 || SEL1|| SEL2 |
     // FUNCION 2 GPIO                                 0      1       0
@@ -69,7 +69,7 @@ void GPIO_Out_pin(uint_fast16_t selectedPins)
  * Output: GND
  *
  *****************************************************************************/
-void GPIO_OUTSET(uint_fast16_t selectedPins, uint_fast8_t state){
+void  GPIO_WRITTE(uint_fast16_t selectedPins, uint_fast8_t state){
 
 
 	if(state==HIGH)
@@ -84,7 +84,8 @@ void GPIO_OUTSET(uint_fast16_t selectedPins, uint_fast8_t state){
 		            break;
 		    }
 	}
-    else if(state==LOW)
+
+    if(state==LOW)
 	{
 		switch (selectedPins) {
 				        case 32:
@@ -99,34 +100,30 @@ void GPIO_OUTSET(uint_fast16_t selectedPins, uint_fast8_t state){
 }
 
 /******************************************************************************
- * Function: GPIO_INPUT_PULL
+ * Function: GPIO_INPUT
  * Preconditions:
  * Overview: sets the pin as input
  * Input: Pin(x) and set pull-up or pull-down.
  * Output: GND
  *
  *****************************************************************************/
-void GPIO_INPUT_PULL(uint_fast16_t selectedPins, uint_fast8_t PULL)
+void GPIO_INPUT(uint_fast16_t selectedPins, uint_fast16_t MODE_PULL)
 {
 
 	uint_fast16_t inputPinValue_withoffsett;
 
-	inputPinValue_withoffsett = DIR_GPIO2_BASE + GPIO_PINX_REG[selectedPins]; //Obtenemos el alias de el reg
+	 inputPinValue_withoffsett = DIR_GPIO2_BASE + GPIO_PINX_REG[selectedPins]; //Obtenemos el alias de el reg
 
-	if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0 || selectedPins > MAX_OUTPUT_PIN){   // Desactivamos gpio
-	    printf("Error el pin %d no disponible.",selectedPins);
-	    exit(1);
-	    }
-
-    switch (selectedPins) {                                 // Desactivamos gpio
-        case 32:    case 33:    case 34:    case 35:    case 36:     case 37:   case 38:    case 39:
-
-        	GPIO_ENABLE1_REG &= ~ (1 << (selectedPins - 32));// se restan 32 poeque estamos usando un registro diferente y empieza donde termina  GPIO_ENABLE_REG
-            break;
-        default:
-        	 GPIO_ENABLE_REG  &= ~1 << selectedPins;
-            break;
+//    if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0){   // Las IO arriba de 34 son solo para entadas
+//    printf("Error el pin %d no disponible.",selectedPins);
+//    exit(1);
+//    }
+    /*DESACTIVAMOS EL PIN COMO SALIDA*/
+    if(selectedPins>=32 && selectedPins<=39){
+    GPIO_ENABLE1_REG &= ~(1<<(selectedPins-32));
     }
+    else
+    GPIO_ENABLE_REG &= ~(1<<selectedPins);
 
      HWREG32(inputPinValue_withoffsett) |= (1<<9);     /*Activamos fun_IE*/
     //                                            | SEL0 || SEL1|| SEL2 |
@@ -135,44 +132,78 @@ void GPIO_INPUT_PULL(uint_fast16_t selectedPins, uint_fast8_t PULL)
       HWREG32( inputPinValue_withoffsett) |= (1<<13); //2'13
       HWREG32( inputPinValue_withoffsett) &= ~(1<<14);// 2'14
 
-      //HWREG32(inputPinValue_withoffsett) |=(1<<PULL_UP);
-      // HWREG32(inputPinValue_withoffsett) |=(1<<PULL_DOWN);
-      if(PULL == PULL_UP)
-      {
+    if(MODE_PULL == PULL_UP)
+    {
+    	HWREG32( inputPinValue_withoffsett) |= (1<<PULL_UP);
+    	HWREG32( inputPinValue_withoffsett) &= ~(1<<PULL_DOWN);
+    }
 
-//    	  if(GPIO_RTC_X[selectedPins] == noexist)
-//    	  {
+    if(MODE_PULL == PULL_DOWN)
+	{
+    	HWREG32(inputPinValue_withoffsett) |=(1<<PULL_DOWN);
+    	HWREG32(inputPinValue_withoffsett) &= ~(1<<PULL_UP);
 
-    		  HWREG32(inputPinValue_withoffsett) &= ~(1<<PULL_DOWN);
-    		  HWREG32(inputPinValue_withoffsett) |=  (1<<PULL_UP);
-//
-//    	  }
-//    	  else
-//		  {
-//
-//
-//
-//		  }
-
-
-      }
-      else if(PULL== PULL_DOWN)
-      {
-
-//    	  if(GPIO_RTC_X[selectedPins] == noexist)
-//    	  {
-//
-    		  HWREG32(inputPinValue_withoffsett) &= ~(1<<PULL_UP);
-    		  HWREG32(inputPinValue_withoffsett) |=  (1<<PULL_DOWN);
-
-//    	  }
-//    	  else
-//    	  {
-//
-//
-//
-//    	  }
-
-      }
+	}
 }
 
+/******************************************************************************
+ * Function: GPIO_READ
+ * Preconditions: GPIO_Out_pin
+ * Overview: read the pin as input
+ * Input: Pin(x) and set pull-up or pull-down.
+ * Output: GND
+ *
+ *****************************************************************************/
+int GPIO_READ(uint_fast16_t selectedPins)
+{
+
+	if (selectedPins >= 32 && selectedPins <= 39)
+	{
+	        if (GPIO_IN1_REG & (1 << (selectedPins - 32)))
+	        {
+	            return 1;
+	        }
+	        else
+	        {
+	            return 0;
+	        }
+	}
+	else
+	{
+	        if (GPIO_IN_REG & (1 << selectedPins))
+	        {
+	            return 1;
+	        }
+	        else
+	        {
+	            return 0;
+	        }
+	}
+
+
+}
+
+/******************************************************************************
+ * Function:  ini_board_GPIO
+ * Preconditions: NONE
+ * Overview: start peripherals
+ * Input: NONE
+ * Output: start peripherals board
+ *
+ *****************************************************************************/
+void ini_board_GPIO()
+{
+	 GPIO_INPUT(BTN1,PULL_UP); //BTN1 AND BTN2 HAVE ONLY PULL-UP
+	 GPIO_INPUT(BTN2,PULL_UP);
+
+	 GPIO_OUT(RGB_RED);
+	 GPIO_OUT(RGB_BLUE);
+	 GPIO_OUT(RGB_GREEN);
+
+	 GPIO_OUT(LED_1);
+	 GPIO_OUT(LED_2);
+	 GPIO_OUT(LED_3);
+	 GPIO_OUT(LED_4);
+	 GPIO_OUT(LED_B);
+
+}

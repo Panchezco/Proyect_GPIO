@@ -20,46 +20,45 @@
  * Alfredo Chacon y el TecNM /IT Chihuahua no son responsables del mal uso de este material.
  *************************************************************************************************/
 
-/* Definición de alimentacion. */
+/************************************************
+       SOURCE DEFINITIONS
+************************************************/
 
 #define VCC 1
 #define GND 0
 
-/* DEFINICIONES estados*/
-
 #define HIGH  VCC
 #define LOW   GND
 
-#define RGB_HIGH  GND // Logica inversa, consulte el esquematico de la tarjeta
+#define RGB_HIGH  GND // REVERSE LOGIC FOR RGB
 #define RGB_LOW   VCC
 
+/************************************************
+        RESISTENCES DEINITIONS
+************************************************/
 #define PULL_UP   8
 #define PULL_DOWN 7
-/* Definición de botones . */
-//Definiciones de Puertos
+
+/************************************************
+      MAP OF BOARD  ESP32-PANTHER48
+************************************************/
+
+#define BTN1    18     //   0x40000 IO 18
+#define BTN2    19     //   0x80000 IO 19
+
+#define LED_1     17   // IO 17
+#define LED_2     16   // IO 16
+#define LED_3     4    // IO 4
+#define LED_4     2    // IO 2
+#define LED_B     5    // IO 5
 
 
-#define BOTON1    18//   0x40000 IO 18
-#define BOTON2    19//   0x80000 IO 19
+#define RGB_RED     14 // IO 14
+#define RGB_GREEN   13 // IO 12
+#define RGB_BLUE    12  // IO 13
 
-/* DEFINICIONES DE LEDS INDEPENDIENTES*/
-
-#define Led_1     17 // IO 17
-#define Led_2     16  // IO 16
-#define Led_3     4     // IO 4
-#define Led_4     2    // IO 2
-#define Led_B     5    // IO 5
-
-/* DEFINICIONES RGB*/
-
-#define RGB_ROJO     14 // IO 14
-#define RGB_VERDE    12 // IO 12
-#define RGB_AZUL     13  // IO 13
-
-
-/* DEFINICIONES standart*/
 #define MAX_VALID_PIN  39
-#define MAX_OUTPUT_PIN 34 // Los pines por encima de 34 son solo de entrada
+#define MAX_OUTPUT_PIN 34
 
 
 
