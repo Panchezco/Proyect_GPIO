@@ -37,7 +37,7 @@ void GPIO_OUT(uint_fast16_t selectedPins)
 {
     uint_fast16_t inputPinValue_withoffsett;
 
-    if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0 || selectedPins > MAX_OUTPUT_PIN){
+    if( selectedPins > MAX_VALID_PIN || selectedPins >= 0 || selectedPins > MAX_OUTPUT_PIN){
     printf("Error el pin %d no disponible.",selectedPins);
     exit(1);
     }
@@ -117,7 +117,7 @@ void GPIO_INPUT(uint_fast16_t selectedPins, uint_fast16_t MODE_PULL)
 
 	 inputPinValue_withoffsett = DIR_GPIO2_BASE + GPIO_PINX_REG[selectedPins]; //Obtenemos el alias de el reg
 
-    if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0){   // Las IO arriba de 34 son solo para entadas
+    if( selectedPins > MAX_VALID_PIN || selectedPins <= 0){   // Las IO arriba de 34 son solo para entadas
     printf("Error el pin %d no disponible.",selectedPins);
     exit(1);
     }
@@ -198,7 +198,7 @@ void ini_board_GPIO()
 {
 	 GPIO_INPUT(BTN1,PULL_UP); //BTN1 AND BTN2 HAVE ONLY PULL-UP
 	 GPIO_INPUT(BTN2,PULL_UP);
-	 GPIO_INPUT(40,PULL_UP);
+	 GPIO_INPUT(34,PULL_UP);
 
 	 GPIO_OUT(RGB_RED);
 	 GPIO_OUT(RGB_BLUE);
