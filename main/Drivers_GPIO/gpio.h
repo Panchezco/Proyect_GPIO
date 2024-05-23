@@ -7,21 +7,24 @@
  * Company:         TecNM /IT Chihuahua
  * Description:     PROTOTIPOS DE FUNCIONES DEL DRIVER
  * Authors:         JORGE GABRIEL LOZANO RODRIGUEZ
+ *                  PEDRO MANCINAS HERNANDEZ
+ *                  RAÚL MONTES MONTES
  * Nota: La interfaz definida de este DRIVER hace uso de las estructuras
  *       declarados en gpio_config_2021.h
  *  Created on: 15 de mayo del 2024
  *  updated: 20/11/2021
  **************************************************/
 /************************************************************************************************
- * * Copyright (C) 2024 by JORGE GABRIEL LOZANO RODRIGUEZ - TecNM /IT Chihuahua
+ * * Copyright (C) 2024 by JORGE GABRIEL LOZANO RODRIGUEZ,PEDRO MANCINAS HERNANDEZ, RAÚL MONTES MONTES  - TecNM /IT Chihuahua
  *
  * Se permite la redistribucion, modificacion o uso de este software en formato fuente o binario
  * siempre que los archivos mantengan estos derechos de autor.
  * Los usuarios pueden modificar esto y usarlo para aprender sobre el campo de software embebido.
- * JORGE GABRIEL LOZANO RODRIGUEZ y el TecNM /IT Chihuahua no son responsables del mal uso de este material.
+ * JORGE GABRIEL LOZANO RODRIGUEZ,PEDRO MANCINAS HERNANDEZ, RAÚL MONTES MONTES  y el TecNM /IT Chihuahua no son responsables del mal uso de este material.
  *************************************************************************************************/
 #include "addresses.h"
-
+#ifndef GPIO_H
+#define GPIO_H
 /************************************************
             IO_MUX_x_REG  ADDRESSES MAP
 ************************************************/
@@ -125,4 +128,4 @@ extern void GPIO_OUT(uint_fast16_t selectedPins);
 extern void GPIO_WRITTE(uint_fast16_t selectedPins, uint_fast8_t state);
 extern void GPIO_INPUT(uint_fast16_t selectedPins, uint_fast16_t MODE_PULL);
 extern int  GPIO_READ(uint_fast16_t selectedPins);
-
+#endif // GPIO_H

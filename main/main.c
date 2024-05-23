@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include "Drivers_GPIO\gpio.c"
 
-void app_main(void)
-{
+void app_main(void){
+
 	ini_board_GPIO();
 
 	while(1)
@@ -24,5 +24,7 @@ void app_main(void)
     	 GPIO_WRITTE(RGB_GREEN,RGB_LOW);
 
 	}
+
+
 
 }
