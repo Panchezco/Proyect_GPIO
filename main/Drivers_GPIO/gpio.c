@@ -36,7 +36,7 @@ void GPIO_OUT(uint_fast16_t selectedPins)
 {
     uint_fast16_t inputPinValue_withoffsett;
 
-    if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0 || selectedPins > MAX_OUTPUT_PIN){
+    if(GPIO_PINX_REG[selectedPins] == 0 || selectedPins > MAX_OUTPUT_PIN || selectedPins < 0 ){
     printf("Error el pin %d no disponible.",selectedPins);
     exit(1);
     }
