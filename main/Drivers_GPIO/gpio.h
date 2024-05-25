@@ -120,12 +120,24 @@ volatile uint32_t GPIO_PINX_REG[] = {
  };
 
 /************************************************
-             FUCTION PROTOTYPE
+             FUCTION PROTOTYPE OF GPIO
 ************************************************/
-
-extern void start_GPIO();
+extern void ini_board_GPIO();
 extern void GPIO_OUT(uint_fast16_t selectedPins);
 extern void GPIO_WRITTE(uint_fast16_t selectedPins, uint_fast8_t state);
 extern void GPIO_INPUT(uint_fast16_t selectedPins, uint_fast16_t MODE_PULL);
 extern int  GPIO_READ(uint_fast16_t selectedPins);
+
+/************************************************
+             FUCTION PROTOTYPE OF CAR
+************************************************/
+extern void start_CAR();
+
+extern void MOTOR_UP();
+extern void MOTOR_DOWN();
+extern void MOTOR_RIGHT();
+extern void MOTOR_LEFT();
+extern void MOTOR_STOP();
+extern void MOTOR_LED_ON();
+extern void MOTOR_LED_OFF();
 #endif // GPIO_H

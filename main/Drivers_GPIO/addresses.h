@@ -40,7 +40,6 @@
  ************************************************/
 
 #define HWREG32(x)     (*((volatile uint32_t *)(x)))
-#define IO (*(volatile uint32_t*)
 
 /************************************************
              OUTPUT ADDRESSES
@@ -113,14 +112,14 @@
 #define IO_21_REG 0x7C
 #define IO_22_REG 0x80
 #define IO_23_REG 0x8C
-#define IO_24_REG 0x00              // NO DISPONIBLE
+#define IO_24_REG 0x00              // DISABLED
 #define IO_25_REG 0x24
 #define IO_26_REG 0x28
 #define IO_27_REG 0x2C
-#define IO_28_REG 0x00 				// NO DISPONIBLE
-#define IO_29_REG 0x00              // NO DISPONIBLE
-#define IO_30_REG 0x00				// NO DISPONIBLE
-#define IO_31_REG 0x00			    // NO DISPONIBLE
+#define IO_28_REG 0x00 				// DISABLED
+#define IO_29_REG 0x00              // DISABLED
+#define IO_30_REG 0x00				// DISABLED
+#define IO_31_REG 0x00			    // DISABLED
 #define IO_32_REG 0x1C
 #define IO_33_REG 0x20
  //ONLY READ
