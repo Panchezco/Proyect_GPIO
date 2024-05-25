@@ -124,12 +124,13 @@ void GPIO_INPUT(uint_fast16_t selectedPins, uint_fast16_t MODE_PULL)
 
 	uint_fast16_t inputPinValue_withoffsett;
 
+    if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0 || selectedPins < 0 ){   // Las IO arriba de 34 son solo para entadas
+    printf("Error el pin %d no disponible.",selectedPins);
+    exit(1);
+    }
+
 	 inputPinValue_withoffsett = DIR_GPIO2_BASE + GPIO_PINX_REG[selectedPins]; //Obtenemos el alias de el reg
 
-//    if( selectedPins > MAX_VALID_PIN || GPIO_PINX_REG[selectedPins] == 0){   // Las IO arriba de 34 son solo para entadas
-//    printf("Error el pin %d no disponible.",selectedPins);
-//    exit(1);
-//    }
     /*DESACTIVAMOS EL PIN COMO SALIDA*/
     if(selectedPins>=32 && selectedPins<=39){
     GPIO_ENABLE1_REG &= ~(1<<(selectedPins-32));
