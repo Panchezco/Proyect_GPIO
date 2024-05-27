@@ -9,10 +9,7 @@
  * Authors:         JORGE GABRIEL LOZANO RODRIGUEZ
  *                  PEDRO MANCINAS HERNANDEZ
  *                  RAÚL MONTES MONTES
- * Nota: La interfaz definida de este DRIVER hace uso de las estructuras
- *       declarados en gpio_config_2021.h
  *  Created on: 15 de mayo del 2024
- *  updated: 20/11/2021
 ////////////////////////////////////////////////////////////////////////////////////////////////////
  * * Copyright (C) 2024 by  JORGE GABRIEL LOZANO RODRIGUEZ,PEDRO MANCINAS HERNANDEZ, RAÚL MONTES MONTES- TecNM /IT Chihuahua
  *
@@ -112,3 +109,8 @@
 #define IO33 (33)
 #define IO34 (34)
 #define IO35 (35)
+#define IO36 (36)
+#define IO37 (37)
+#define IO38 (38)
+#define IO39 (39)
+
