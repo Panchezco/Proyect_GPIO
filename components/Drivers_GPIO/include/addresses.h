@@ -140,38 +140,3 @@
 #define I_38_REG 0x0C
 #define I_39_REG 0x01
 
-
-
-/************************************************
-            RTC ADDRESSES
- ************************************************/
-
-#define RTC_0  0x01       //I_36_REG
-#define RTC_1  0x01       //I_37_REG
-#define RTC_2  0x01       //I_38_REG
-#define RTC_3  0x01       //I_39_REG
-#define RTC_4  0x01       //I_34_REG
-#define RTC_5  0x01       //I_35_REG
-#define RTC_6  0x01       //IO_25_REG
-#define RTC_7  0x01       //IO_26_REG
-#define RTC_8  0x3FF484B4 //IO_33_REG
-#define RTC_9  0x3FF484B8 //IO_32_REG
-#define RTC_10 0x3FF48494 //IO_4_REG
-#define RTC_11 0x3FF48498 //IO_0_REG
-#define RTC_12 0x3FF4849C //IO_2_REG
-#define RTC_13 0x3FF484A0 //IO_15_REG
-#define RTC_14 0x3FF484A4 //IO_13_REG
-#define RTC_15 0x3FF484A8 //IO_12_REG
-#define RTC_16 0x3FF484AC //IO_14_REG
-#define RTC_17 0x3FF484B0 //IO_27_REG
-
-#define TOUCH_RTC_0   RTC_10
-#define TOUCH_RTC_1   RTC_11
-#define TOUCH_RTC_2   RTC_12
-#define TOUCH_RTC_3   RTC_13
-#define TOUCH_RTC_4   RTC_14
-#define TOUCH_RTC_5   RTC_15
-#define TOUCH_RTC_6   RTC_16
-#define TOUCH_RTC_7   RTC_17
-#define TOUCH_RTC_8   RTC_8
-#define TOUCH_RTC_9   RTC_9

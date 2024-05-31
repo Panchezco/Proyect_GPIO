@@ -40,7 +40,6 @@ extern int  GPIO_READ(uint_fast16_t selectedPins);
              FUCTION PROTOTYPE OF CAR
 ************************************************/
 extern void start_CAR();
-
 extern void MOTOR_UP();
 extern void MOTOR_DOWN();
 extern void MOTOR_RIGHT();
