@@ -621,3 +621,10 @@ C:/Users/DELL/workspace/Proyec/build/esp-idf/main/CMakeFiles/list_install_compon
 C:/Users/DELL/workspace/Proyec/build/esp-idf/main/CMakeFiles/install.dir
 C:/Users/DELL/workspace/Proyec/build/esp-idf/main/CMakeFiles/install/local.dir
 C:/Users/DELL/workspace/Proyec/build/esp-idf/main/CMakeFiles/install/strip.dir
+C:/Users/DELL/workspace/Proyec/build/esp-idf/Drivers_GPIO/CMakeFiles/__idf_Drivers_GPIO.dir
+C:/Users/DELL/workspace/Proyec/build/esp-idf/Drivers_GPIO/CMakeFiles/edit_cache.dir
+C:/Users/DELL/workspace/Proyec/build/esp-idf/Drivers_GPIO/CMakeFiles/rebuild_cache.dir
+C:/Users/DELL/workspace/Proyec/build/esp-idf/Drivers_GPIO/CMakeFiles/list_install_components.dir
+C:/Users/DELL/workspace/Proyec/build/esp-idf/Drivers_GPIO/CMakeFiles/install.dir
+C:/Users/DELL/workspace/Proyec/build/esp-idf/Drivers_GPIO/CMakeFiles/install/local.dir
+C:/Users/DELL/workspace/Proyec/build/esp-idf/Drivers_GPIO/CMakeFiles/install/strip.dir
