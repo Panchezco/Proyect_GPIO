@@ -36,6 +36,11 @@ extern void GPIO_WRITTE(uint_fast16_t selectedPins, uint_fast8_t state);
 extern void GPIO_INPUT(uint_fast16_t selectedPins, uint_fast16_t MODE_PULL);
 extern int  GPIO_READ(uint_fast16_t selectedPins);
 
+extern void INT_ENABLE(uint_fast16_t selectedPins);//Habilita interrupcion
+extern void CLN_ENABLE(uint_fast16_t selectedPins);//Desabilita interrupcion
+extern int  intr_pendiente(int selectedPins);//Interrupciones pendientes
+extern void set_interrupcion(uint_fast16_t selectedPins, int funcion);//Establece interrupcion e instala ISR
+
 /************************************************
              FUCTION PROTOTYPE OF CAR
 ************************************************/

@@ -109,3 +109,6 @@
 #define IO38 (38)
 #define IO39 (39)
 
+//Interrupciones
+#define RISING_EDGE 1
+#define FALLING_EDGE 2
